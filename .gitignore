@@ -1,0 +1,35 @@
+# C/C++ build items
+.build/
+bins
+gens
+libs
+objs
+
+# VSCode items
+.vscode/
+.history/
+
+# PyCharm items
+.idea/*
+.vagrant/*
+
+# Python items
+cython_debug/
+python_build/
+yapf_virtual_environment/
+python_pylint_venv/
+.coverage*
+.eggs
+htmlcov/
+dist/
+*.egg
+py3[0-9]_gevent/
+py3[0-9]_native/
+
+# profiler output
+*.prof
+
+# python compiled objects
+*.pyc
+
+*.log

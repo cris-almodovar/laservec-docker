@@ -19,11 +19,15 @@ import config
 
 from laservec.proto import laservec_pb2
 from laservec.proto import laservec_pb2_grpc
+from laservec import LaserEncoder
 
 
 class LaserGrpcApi(laservec_pb2_grpc.LaserGrpcApiServicer):
+    """
+    Implements a gRPC API on top of LaserEncoder.
+    """
 
-    def __init__(self, laser):
+    def __init__(self, laser: LaserEncoder):
         self.laser = laser
 
     def vectorize(self, request, context):
@@ -44,6 +48,6 @@ class LaserGrpcApi(laservec_pb2_grpc.LaserGrpcApiServicer):
         endpoint = f"0.0.0.0:{config.LASER_GRPC_API_PORT}"
         server.add_insecure_port(endpoint)
         server.start()
-        logging.info(f"LASER GRPC API listening on: {endpoint}")
+        logging.info(f"LASER gRPC API listening on: {endpoint}")
         server.wait_for_termination()
 

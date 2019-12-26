@@ -17,8 +17,8 @@ logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=lo
 
 
 if __name__ == '__main__':
-    from laservec.grpc_api import LaserGrpcApi
     from laservec import LaserEncoder
+    from laservec.grpc_api import LaserGrpcApi
 
     api = LaserGrpcApi(LaserEncoder())
     api.start()

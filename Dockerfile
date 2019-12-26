@@ -1,5 +1,7 @@
 FROM continuumio/miniconda3:4.7.12
 
+LABEL maintainer="Cris Almodovar <https://github.com/cris-almodovar>"
+
 RUN echo "source activate base" > ~/.bashrc
 
 RUN apt-get -qq -y update

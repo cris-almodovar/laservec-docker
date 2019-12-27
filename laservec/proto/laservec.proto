@@ -22,13 +22,14 @@ package laservec;
 
 
 message VectorizeRequest {
-    string lang = 1;
-    string text = 2;
+    string text = 1;
+    string lang = 2;
 }
 
 message VectorizeResponse {
-    string lang = 1;
-    repeated float embedding = 2;
+    repeated float embedding = 1;
+    string lang = 2;
+
 }
 
 service LaserGrpcApi {

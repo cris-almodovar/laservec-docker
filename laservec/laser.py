@@ -35,6 +35,7 @@ class LaserEncoder(object):
         self.model_dir = Path(__file__).parent / "LASER" / "models"
         self.encoder_path = self.model_dir / "bilstm.93langs.2018-12-26.pt"
         self.bpe_codes_path = self.model_dir / "93langs.fcodes"
+
         logging.info(f"Loading LASER encoder from: {self.encoder_path}")
         self.encoder = SentenceEncoder(self.encoder_path,
                                        max_sentences=None,
@@ -42,22 +43,22 @@ class LaserEncoder(object):
                                        sort_kind='mergesort',
                                        cpu=True)
 
-    def vectorize(self, lang, text):
+    def vectorize(self, text, lang=None):
         """
         Converts the given text into a 1024-dimensional vector representation
         that is agnostic to the source language. The computed vector is "universal"
         in that it lives in an embedding space that is shared among all the languages
         supported by LASER.
 
+        :param text: The input text, consisting of one or more sentences. This parameter is mandatory.
+
         :param lang: The ISO 639-1 code of the source language. See: https://github.com/facebookresearch/LASER#supported-languages
                      This parameter is optional; if not specified, it will auto-detected.
 
-        :param text: The input text, consisting of one or more sentences. This parameter is mandatory.
-
-        :return: A tuple (lang, embedding) containing the language code of the input text,
-                and its 1024-dimensional vector representation (as a list of floats).
+        :return: A tuple (embedding, lang) containing the 1024-dimensional vector representation
+                of the input text (as a numpy array), and the ISO 639-1 language code of the input text.
                 Note: if the input text consists of more than one sentence, the returned
-                embedding vector is the mean of the individual sentence vectors.
+                vector is the mean of the individual sentence vectors.
         """
         if not lang:
             lang = langdetect.detect(text)
@@ -108,7 +109,5 @@ class LaserEncoder(object):
 
             # If the input text contains more than one sentence, a vector is computed for each sentence.
             # Combine the individual sentence vectors by computing their mean.
-            raw_embeddings = raw_embeddings.mean(axis=0)
-            embedding = raw_embeddings.tolist()
-
-            return lang, embedding
+            embedding = raw_embeddings.mean(axis=0)
+            return embedding, lang

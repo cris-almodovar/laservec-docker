@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='laservec',
   syntax='proto3',
   serialized_options=_b('\n\030ai.connexionist.laservecB\014LaserGrpcApiP\001\242\002\003LGA'),
-  serialized_pb=_b('\n\x1dlaservec/proto/laservec.proto\x12\x08laservec\".\n\x10VectorizeRequest\x12\x0c\n\x04lang\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"4\n\x11VectorizeResponse\x12\x0c\n\x04lang\x18\x01 \x01(\t\x12\x11\n\tembedding\x18\x02 \x03(\x02\x32V\n\x0cLaserGrpcApi\x12\x46\n\tvectorize\x12\x1a.laservec.VectorizeRequest\x1a\x1b.laservec.VectorizeResponse\"\x00\x42\x30\n\x18\x61i.connexionist.laservecB\x0cLaserGrpcApiP\x01\xa2\x02\x03LGAb\x06proto3')
+  serialized_pb=_b('\n\x1dlaservec/proto/laservec.proto\x12\x08laservec\".\n\x10VectorizeRequest\x12\x0c\n\x04text\x18\x01 \x01(\t\x12\x0c\n\x04lang\x18\x02 \x01(\t\"4\n\x11VectorizeResponse\x12\x11\n\tembedding\x18\x01 \x03(\x02\x12\x0c\n\x04lang\x18\x02 \x01(\t2V\n\x0cLaserGrpcApi\x12\x46\n\tvectorize\x12\x1a.laservec.VectorizeRequest\x1a\x1b.laservec.VectorizeResponse\"\x00\x42\x30\n\x18\x61i.connexionist.laservecB\x0cLaserGrpcApiP\x01\xa2\x02\x03LGAb\x06proto3')
 )
 
 
@@ -34,14 +34,14 @@ _VECTORIZEREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='lang', full_name='laservec.VectorizeRequest.lang', index=0,
+      name='text', full_name='laservec.VectorizeRequest.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='text', full_name='laservec.VectorizeRequest.text', index=1,
+      name='lang', full_name='laservec.VectorizeRequest.lang', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -72,16 +72,16 @@ _VECTORIZERESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='lang', full_name='laservec.VectorizeResponse.lang', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='embedding', full_name='laservec.VectorizeResponse.embedding', index=0,
+      number=1, type=2, cpp_type=6, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='embedding', full_name='laservec.VectorizeResponse.embedding', index=1,
-      number=2, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
+      name='lang', full_name='laservec.VectorizeResponse.lang', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),

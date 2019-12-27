@@ -31,14 +31,14 @@ class LaserGrpcApi(laservec_pb2_grpc.LaserGrpcApiServicer):
         self.laser = laser
 
     def vectorize(self, request, context):
-        lang = request.lang
         text = request.text
+        lang = request.lang
         snippet_len = 100 if len(text) > 100 else len(text)
         snippet = text[:snippet_len] + (" ..." if len(text) > snippet_len else "")
-        logging.info(f"Received request: lang={lang}, text={snippet}")
+        logging.info(f"Received request: lang={lang}, text[:{snippet_len}]={snippet}")
 
-        lang_detected, embedding = self.laser.vectorize(lang, text)
-        return laservec_pb2.VectorizeResponse(lang=lang_detected, embedding=embedding)
+        embedding, lang = self.laser.vectorize(text, lang)
+        return laservec_pb2.VectorizeResponse(embedding=embedding, lang=lang)
 
     def start(self):
         server = grpc.server(futures.ThreadPoolExecutor(max_workers=config.LASER_GRPC_API_WORKERS))

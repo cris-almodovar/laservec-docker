@@ -1,0 +1,12 @@
+docker-build-master:
+  image: docker:latest
+  stage: build
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PWD"
+  script:
+    - docker build --pull -t "$DOCKER_HUB_IMAGE" .
+    - docker push "$DOCKER_HUB_IMAGE"
+  only:
+    - master
